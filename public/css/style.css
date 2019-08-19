@@ -1,0 +1,23 @@
+.navbar-expand-lg{
+    background: #563d7c;
+}
+.nav-link, .navbar-brand{
+    color: aliceblue;
+}
+.ul.li.a:hover { color: #fff !important; }
+.ul.li.a { color: #cbbde2 !important; }
+
+.ul.li.a:active {
+
+    font-weight: bold !important;
+}
+
+.btn-searach{
+    border-color: #ffe484;
+    color: #ffe484;
+}
+.btn-searach:hover{
+    background: #ffe484;
+    color: #212529;
+    font-weight: bold;
+}
