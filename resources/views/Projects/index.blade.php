@@ -11,6 +11,7 @@
                 <th scope="col">No</th>
                 <th scope="col">Title</th>
                 <th scope="col">Description</th>
+                <th scope="col">Trait</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -21,6 +22,8 @@
                 <th scope="row">1</th>
                 <td><?= $project->title ?></td>
                 <td><?= $project->description ?></td>
+                <td>{!! $project->printThis() !!}</td>
+
                 <td>
                     <a href="{{ route('projects.edit', [$project->id]) }}" type="button" class="btn btn-sm btn-primary">Update</a>
                     <form action="{{ route('projects.destroy', [$project->id]) }}" method="POST" style="display:inline">

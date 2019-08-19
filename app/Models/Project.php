@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Traits\projectMethod;
+use App\Models\Traits\Method;
 
 class Project extends Model
 {
-
-    use projectMethod;
+    use Method;
 
     const PAGE_SIZE = 5;
 
