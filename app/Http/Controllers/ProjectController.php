@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 
-class ProjectsController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class ProjectsController extends Controller
     {
         // $projects = \App\Models\Project::all();  <---  { PSR-4 autoloaing specification }
         $projects = Project::paginate(Project::PAGE_SIZE);
-        return view('Projects.index',compact('projects'));
+        return view('project.index',compact('projects'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        return view('Projects.create');
+        return view('project.create');
     }
 
     /**
@@ -54,9 +54,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        return view('project.show', compact('project'));
     }
 
     /**
@@ -67,7 +67,7 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('Projects.edit', compact('project'));
+        return view('project.edit', compact('project'));
     }
 
     /**
@@ -85,10 +85,10 @@ class ProjectsController extends Controller
         ]);
 
         if ($project->update($data)) {
-            return redirect()->route('projects.index')->withFlashSuccess('Project updated Successfully');
+            return redirect()->route('projects.index');
         }
 
-        return redirect()->route('projects.index')->withFlashSuccess('Project not updated Successfully');
+        return redirect()->route('project.index')->withFlashSuccess('Project not updated Successfully');
     }
 
     /**

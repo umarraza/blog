@@ -32,8 +32,8 @@ Auth::routes();
 
 Route::view('/', 'welcome');
 
-Route::resource('projects', 'ProjectsController');
-
+Route::resource('projects', 'ProjectController');
+Route::patch('/tasks/{task}', 'ProjectTaskController@update');
 
 
 

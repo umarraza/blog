@@ -26,6 +26,7 @@
 
                 <td>
                     <a href="{{ route('projects.edit', [$project->id]) }}" type="button" class="btn btn-sm btn-primary">Update</a>
+                    <a href="{{ route('projects.show', [$project->id]) }}" type="button" class="btn btn-sm btn-primary">View</a>
                     <form action="{{ route('projects.destroy', [$project->id]) }}" method="POST" style="display:inline">
                         {{ method_field('DELETE') }}
                         {{ csrf_field() }}
