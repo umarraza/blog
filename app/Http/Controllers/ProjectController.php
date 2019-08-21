@@ -17,6 +17,8 @@ class ProjectController extends Controller
     {
         // $projects = \App\Models\Project::all();  <---  { PSR-4 autoloaing specification }
         $projects = Project::paginate(Project::PAGE_SIZE);
+        return response()->json($projects);
+
         return view('project.index',compact('projects'));
     }
 

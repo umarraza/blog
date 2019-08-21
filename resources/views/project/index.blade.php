@@ -38,7 +38,32 @@
             @endforeach
         </tbody>
     </table>
+    <button class="btn btn-success" id="btn">Press</button>
 @endsection
+
+<script>
+
+window.onload = () => {
+
+    var btn = document.getElementById("btn");
+        btn.addEventListener('click', () => {
+        var request = new XMLHttpRequest();
+        request.open('GET', "{{route('projects.index')}}")
+        request.onload = () => {
+            var data = request.responseText;
+            // Tell the browser to interpret response as JSON data instead of plain text
+            console.log(data); // [ 'square bracket shows because browser interpreting the response as plain text. It doesn't know that the response is an array of objects
+        };
+        request.send();
+
+        });
+}
+
+
+
+
+</script>
+
 
 <!-- Passing id with named route,
     more than one parameters -> ['id'=>1])
