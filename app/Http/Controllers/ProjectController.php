@@ -13,13 +13,12 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $projects = \App\Models\Project::all();  <---  { PSR-4 autoloaing specification }
-        $projects = Project::paginate(Project::PAGE_SIZE);
+        // $projects = Project::paginate(Project::PAGE_SIZE);
+        $projects = Project::all();
         return response()->json($projects);
-
-        return view('project.index',compact('projects'));
     }
 
     /**
@@ -40,13 +39,15 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $project = Project::create([
             'title' => $request->get('title'),
             'description' => $request->get('description')
         ]);
 
         $project->save();
-
+        return response()->json($project);
         return redirect("projects");
     }
 
@@ -90,7 +91,6 @@ class ProjectController extends Controller
             return redirect()->route('projects.index');
         }
 
-        return redirect()->route('project.index')->withFlashSuccess('Project not updated Successfully');
     }
 
     /**

@@ -27,7 +27,7 @@
                         <a class="nav-link" href="{{ url('/') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('projects.index') }}">Projects</a>
+                        <a class="nav-link" href="{{ route('all-projects') }}">Projects</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('projects.create') }}">Create</a>
