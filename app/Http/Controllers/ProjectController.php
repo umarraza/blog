@@ -18,6 +18,7 @@ class ProjectController extends Controller
         // $projects = \App\Models\Project::all();  <---  { PSR-4 autoloaing specification }
         // $projects = Project::paginate(Project::PAGE_SIZE);
         $projects = Project::all();
+        // return $projects;
         return response()->json($projects);
     }
 
@@ -39,8 +40,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $project = Project::create([
             'title' => $request->get('title'),
             'description' => $request->get('description')
@@ -48,7 +47,7 @@ class ProjectController extends Controller
 
         $project->save();
         return response()->json($project);
-        return redirect("projects");
+        // return redirect()->back();
     }
 
     /**

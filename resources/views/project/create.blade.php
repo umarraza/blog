@@ -8,18 +8,18 @@
 
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
-            <form action="/blog/projects" method="POST">
+            <form action="" id="projectsForm">
                 @csrf
                 <div class="form-group">
                     <label for="formGroupExampleInput">Title</label>
-                    <input type="text" class="form-control" name="title" id="formGroupExampleInput" placeholder="" required>
+                    <input type="text" class="form-control required" name="title" id="title" placeholder="">
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Decsription</label>
-                    <textarea class="form-control" name="description" cols="22" rows="5" required></textarea>
+                    <textarea class="form-control" name="description" id="description" cols="22" rows="5"></textarea>
                 </div>
                 <div>
-                    <input type="submit" class="btn btn-lg btn-primary" value="submit" id="btn">
+                    <input type="submit" class="btn btn-lg btn-primary required" value="submit" id="btn">
                 </div>
             </form>
         </div>
@@ -32,24 +32,35 @@
 
 window.onload = () => {
 
-    document.getElementById('btn').addEventListener('click', () => {
+    $('#btn').on('click', () => {
 
-        var title = document.getElementById('formGroupExampleInput').value;
-        var params = "title"+title;
+        $( "#projectsForm" ).submit(function( event ) {
 
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', "{{route('projects.store')}}");
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            if ( $(".required").val().length === 0 ) {
 
-        xhr.onload = () => {
-            var data = JSON.parse(this.respopnseText);
-            console.log(data);
-        }
+                event.preventDefault();
+            } else {
 
-        xhr.send(params);
+                title = $('#title').val();
+                description = ('#description').val();
 
+                var title = document.getElementById('title').value;
+                var params = "title"+title;
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', "{{route('projects.store')}}");
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                xhr.onload = () => {
+                    var data = JSON.parse(this.respopnseText);
+                    console.log(data);
+                }
+                xhr.send(params);
+                event.preventDefault();
+
+            }
+        });
     });
-
 }
 
 </script>
